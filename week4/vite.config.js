@@ -11,6 +11,7 @@ export default defineConfig({
   build: {
     outDir: resolve(__dirname, "dist"),
     rollupOptions: {
+      // https://vitejs.dev/guide/build.html#multi-page-app
       input: {
         main: resolve(__dirname, "src/index.html"),
         requestAnimationFrame: resolve(

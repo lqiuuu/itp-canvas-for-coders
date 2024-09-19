@@ -26,7 +26,7 @@ const camera = new THREE.PerspectiveCamera(
 );
 camera.position.set(20, 10, 20);
 
-// axis helper -> X: red, Y: green, Z: blue
+// axes helper -> X: red, Y: green, Z: blue
 const axesHelper = new THREE.AxesHelper(5);
 scene.add(axesHelper);
 
@@ -99,7 +99,7 @@ scene.add(torusKnotMesh);
 // text
 const fontLoader = new FontLoader();
 fontLoader.load("/helvetiker_regular.typeface.json", (font) => {
-  const text = "Hello three.js!";
+  const text = "Hello world!";
 
   const textGeometry = new TextGeometry(text, {
     font: font,

@@ -24,7 +24,7 @@ const camera = new THREE.PerspectiveCamera(
 );
 camera.position.set(20, 10, 20);
 
-// axis helper -> X: red, Y: green, Z: blue
+// axes helper -> X: red, Y: green, Z: blue
 const axesHelper = new THREE.AxesHelper(10);
 scene.add(axesHelper);
 
@@ -70,9 +70,10 @@ moon.position.z = -10;
 
 // earth
 const earth = new THREE.Mesh(geometry, material);
+earthGroup.add(earth, moon);
+
 earthGroup.scale.setScalar(1 / 4);
 earthGroup.position.z = -10;
-earthGroup.add(earth, moon);
 
 // sun
 const sun = new THREE.Mesh(geometry, material);
@@ -80,9 +81,8 @@ sunGroup.add(sun, earthGroup);
 
 scene.add(sunGroup);
 
-/**
- * scene > sunGroup > sun / (earthGroup > earth / moon)
- */
+// scene > sunGroup > sun / (earthGroup > earth / moon)
+console.log(sunGroup);
 
 /**
  * //////////////////////////////////////////////////////////////////////////////
@@ -90,7 +90,7 @@ scene.add(sunGroup);
 
 // animate
 const animate = (timestamp) => {
-  // timestamp *= 0.001;
+  timestamp *= 0.001;
   // earthGroup.rotation.y = Math.PI * timestamp * 0.1;
   // sunGroup.rotation.y = Math.PI * timestamp * 0.1;
 
