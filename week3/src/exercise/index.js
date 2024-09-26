@@ -57,9 +57,79 @@ window.addEventListener("resize", onResize);
 
 // box
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshNormalMaterial();
-const boxMesh = new THREE.Mesh(boxGeometry, material);
-scene.add(boxMesh);
+const m1 = new THREE.MeshBasicMaterial({
+  color: "mediumslateblue"
+});
+const m2 = new THREE.MeshBasicMaterial({
+  color: "lawngreen"
+});
+
+const m3 = new THREE.MeshBasicMaterial({
+  color: "yellow"
+});
+
+const m4 = new THREE.MeshBasicMaterial({
+  color: "white"
+});
+
+const m5 = new THREE.MeshBasicMaterial({
+  color: "hotpink"
+});
+
+const m6 = new THREE.MeshBasicMaterial({
+  color: "salmon"
+});
+// const boxMesh = new THREE.Mesh(boxGeometry, material);
+// scene.add(boxMesh);
+let material = [m1, m2, m3, m4, m5, m6];
+
+for (let i = 0; i < 3; i++){
+  for (let j = 0; j < 3; j++){
+    for (let k = 0; k < 3; k++){
+  const boxMesh = new THREE.Mesh(boxGeometry, material);
+  boxMesh.position.x = i * 0.1 + i;
+  boxMesh.position.y = j * 0.1 + j;
+  boxMesh.position.z = k * 0.1 + k;
+  scene.add(boxMesh);
+    }
+  }
+}
+
+const innerboxG = new THREE.BoxGeometry(3,3,3);
+const mi = new THREE.MeshBasicMaterial({
+  color: "black"
+});
+const innerbox = new THREE.Mesh(innerboxG, mi);
+scene.add(innerbox);
+innerbox.position.x = 1.1;
+innerbox.position.y = 1.1;
+innerbox.position.z = 1.1;
+
+//not really working
+// const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
+// const material = new THREE.MeshNormalMaterial();
+
+// function newCube(x, y, z){
+//   const cubeMesh = new THREE.Mesh(cubeGeometry, material);
+//   cubeMesh.position = new THREE.Vector3(x, y, z);
+//   scene.add(cubeMesh);
+// }
+//   for (let i = 0; i < 3; i++){
+//       for (let j = 0; j < 3; j++){
+//         for (let k = 0; k < 3; k++){
+//       // const boxMesh = new THREE.Mesh(boxGeometry, material);
+//       var x = i * 0.1 + i;
+//       var y = j * 0.1 + j;
+//       var z = k * 0.1 + k;
+      
+//       newCube(x, y, z);
+//         }
+//       }
+//     }
+    
+
+// group
+const earthGroup = new THREE.Group();
 
 // animate
 const animate = () => {

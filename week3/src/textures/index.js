@@ -62,7 +62,8 @@ imageTexture1.colorSpace = THREE.SRGBColorSpace; // Textures containing color da
 
 const imageMaterial1 = new THREE.MeshBasicMaterial({
   map: imageTexture1,
-  side: THREE.DoubleSide,
+  side: THREE.DoubleSide, //default oneside
+  //side: 0=front, 1=back, 2=doubleside
 });
 const sphereGeometry = new THREE.SphereGeometry(3, 128, 128);
 const sphereMesh = new THREE.Mesh(sphereGeometry, imageMaterial1);

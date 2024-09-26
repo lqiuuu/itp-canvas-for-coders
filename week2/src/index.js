@@ -46,17 +46,13 @@ const camera = new THREE.OrthographicCamera(
 camera.position.set(0, 100, 400);
 camera.lookAt(0, 100, 0);
 
-// axes helper -> X: red, Y: green, Z: blue
+// axis helper -> X: red, Y: green, Z: blue
 const axesHelper = new THREE.AxesHelper(50);
 axesHelper.position.y = 0.01; // above the ground slightly
 // scene.add(axesHelper);
 
 // ambient light
-<<<<<<< HEAD
 const ambientLight = new THREE.AmbientLight("palevioletred", 0.1); //(color, intensity)
-=======
-const ambientLight = new THREE.AmbientLight(0xcccccc, 0.1);
->>>>>>> 9972f79419cd843bb9940e70121c45fa677d08a3
 scene.add(ambientLight);
 console.log("ambientLight", ambientLight);
 
@@ -121,18 +117,14 @@ controls.minPolarAngle = Math.PI * 0.4;
 // controls.maxPolarAngle = Math.PI/2;
 controls.target = new THREE.Vector3(0, 100, 0);
 
-<<<<<<< HEAD
 // // first person control, fly control
-=======
-// // FirstPersonControl
->>>>>>> 9972f79419cd843bb9940e70121c45fa677d08a3
 // const controls = new FirstPersonControls(camera, renderer.domElement);
 // controls.movementSpeed = 100;
 // controls.lookSpeed = 0.02;
 // const clock = new THREE.Clock(); // requires delta time value in update(), should pass this delta time by default
 
 /**
- * ----------------------------------------------------------------------------------------
+ * --------------------------------------------
  * objects, you don't need to modify for week2
  */
 
@@ -166,7 +158,7 @@ sphereMesh.scale.setScalar(5);
 scene.add(sphereMesh);
 
 /**
- * ----------------------------------------------------------------------------------------
+ * --------------------------------------------
  */
 
 // resize, callback function
@@ -185,7 +177,7 @@ window.addEventListener("resize", onResize); //javascript thing, fires whenever 
 // animate
 const animate = () => {
   controls.update();
-  // controls.update(clock.getDelta()); // for first person control
+  // controls.update(clock.getDelta()); // first person control
 
   renderer.render(scene, camera); //render the scene
   requestAnimationFrame(animate);
