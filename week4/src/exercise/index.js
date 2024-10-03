@@ -100,6 +100,13 @@ gsap.fromTo(
     repeat: -1,
     repeatDelay: 3,
     yoyo: true,
-    ease: "power2.inOut",
+    ease: "elastic.inOut(1,0.3)"
   }
 );
+
+gsap.to("#hi", {
+  y: 10,
+  repeat: -1,
+  yoyo: true,
+  ease: "sine.inOut"
+});

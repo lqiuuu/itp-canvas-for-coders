@@ -1,19 +1,21 @@
 import "./style.css";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+// import { gsap } from "gsap";
 
 // app
-// const app = document.querySelector(".app canvas");
+const app = document.querySelector(".diagram");
 
 // renderer
 const renderer = new THREE.WebGLRenderer({ 
   antialias: true, 
-  canvas: document.querySelector(".diagram canvas"),
+  // canvas: document.querySelector(".diagram"),
   alpha: true
 });
-// renderer.setPixelRatio(window.devicePixelRatio);
-// renderer.setSize(window.innerWidth, window.innerHeight);
-// app.appendChild(renderer.domElement);
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(150, 150);
+renderer.setClearColor( 0x000000, 0 );
+app.appendChild(renderer.domElement);
 
 //canvas
 function resizeCanvasToDisplaySize() {
@@ -32,7 +34,7 @@ function resizeCanvasToDisplaySize() {
 
 // scene
 const scene = new THREE.Scene();
-scene.background = new THREE.Color( 0xffffff );
+// scene.background = new THREE.Color( 0x000000, 0 );
 
 // camera
 const camera = new THREE.PerspectiveCamera(
@@ -41,17 +43,17 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   1000
 );
-camera.position.set(100, 50, 200);
+camera.position.set(100, 0, 200);
 
 // controls
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.autoRotate = true;
 
 // object
-const geometry = new THREE.IcosahedronGeometry(20,0);
+const geometry = new THREE.IcosahedronGeometry(30,0);
 const material = new THREE.MeshNormalMaterial();
 const mesh = new THREE.Mesh(geometry, material);
-mesh.position.y = 5;
+// mesh.position.y = 5;
 scene.add(mesh);
 
 // floor
@@ -79,3 +81,20 @@ const animate = () => {
 };
 
 animate();
+
+
+import { gsap } from "gsap";
+
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.to('.test', {
+    scrollTrigger: {
+        trigger: '.test2', // start the animation when ".box" enters the viewport (once)
+        start: "top center",
+        end: "top 100px"
+    },
+    y: 500,
+    // duration: 3
+    repeat: -1,
+    yoyo: true
+});
