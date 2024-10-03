@@ -1,6 +1,7 @@
 import "./style.css";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 // import { gsap } from "gsap";
 
 // app
@@ -47,14 +48,19 @@ camera.position.set(100, 0, 200);
 
 // controls
 const controls = new OrbitControls(camera, renderer.domElement);
-controls.autoRotate = true;
+controls.autoRotate = false;
+
+// ambient light
+const ambientLight = new THREE.AmbientLight(0xffffff, 2);
+scene.add(ambientLight);
+
 
 // object
 const geometry = new THREE.IcosahedronGeometry(30,0);
 const material = new THREE.MeshNormalMaterial();
 const mesh = new THREE.Mesh(geometry, material);
 // mesh.position.y = 5;
-scene.add(mesh);
+// scene.add(mesh);
 
 // floor
 // const floorGeometry = new THREE.PlaneGeometry(30, 30);
@@ -62,6 +68,45 @@ scene.add(mesh);
 // floorMesh.rotation.x = -Math.PI * 0.5;
 // floorMesh.position.y = 0;
 // scene.add(floorMesh);
+
+/**
+ * 3D Model
+ */
+
+// Instantiate a loader
+const loader = new GLTFLoader();
+
+// Load a glTF resource
+loader.load(
+  // resource URL
+  "/mushroom1.glb",
+  // called when the resource is loaded
+  function (gltf) {
+    console.log(`mushroom1 gltf: `, gltf);
+
+    scene.add(gltf.scene);
+
+    gltf.scene.position.y = -80;
+    gltf.scene.scale.setScalar(200);
+
+    gltf.scene.traverse(function (el) {
+      console.log("traverse: ", el);
+
+      if (el.isMesh) {
+        console.log("isMesh: ", el);
+      }
+    });
+  },
+  // called while loading is progressing
+  function (xhr) {
+    console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+  },
+  // called when loading has errors
+  function (error) {
+    console.log("An error happened");
+  }
+);
+
 
 // resize
 const onResize = () => {
@@ -81,20 +126,3 @@ const animate = () => {
 };
 
 animate();
-
-
-import { gsap } from "gsap";
-
-gsap.registerPlugin(ScrollTrigger);
-
-gsap.to('.test', {
-    scrollTrigger: {
-        trigger: '.test2', // start the animation when ".box" enters the viewport (once)
-        start: "top center",
-        end: "top 100px"
-    },
-    y: 500,
-    // duration: 3
-    repeat: -1,
-    yoyo: true
-});
