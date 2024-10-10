@@ -52,7 +52,7 @@ p {
   left: 30%;
   /* margin: 1em;  */
   /* background-color: red; */
-  z-index: 10;
+  z-index: -10;
   }
 
 /* canvas { 

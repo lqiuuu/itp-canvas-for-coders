@@ -2,7 +2,7 @@ import "./style.css";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-// import { gsap } from "gsap";
+import { gsap } from "gsap";
 
 // app
 const app = document.querySelector(".diagram");
@@ -126,3 +126,11 @@ const animate = () => {
 };
 
 animate();
+
+
+gsap.to('#app', {
+  y: 10,
+  repeat: -1,
+  yoyo: true,
+  ease: "sine.inOut"
+});
